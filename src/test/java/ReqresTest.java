@@ -12,7 +12,7 @@ public class ReqresTest {
     public static final String BASE_URL = "https://reqres.in";
 
     @Test
-    void CheckSupportLinkTest() {
+    void checkSupportLinkTest() {
         given()
                 .log().uri()
                 .when()
@@ -28,7 +28,7 @@ public class ReqresTest {
 
 
     @Test
-    void CheckListUsersTest() {
+    void checkListUsersTest() {
         given()
                 .log().uri()
                 .when()
@@ -44,7 +44,7 @@ public class ReqresTest {
 
 
     @Test
-    void UsersSchemeTest() {
+    void usersSchemeTest() {
         Response response = RestAssured.get(BASE_URL + "/api/users?page=2");
         response.then().assertThat().statusCode(200);
         response.then().assertThat().body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
@@ -52,7 +52,7 @@ public class ReqresTest {
 
 
     @Test
-    void CheckUserNotFound() {
+    void checkUserNotFound() {
         given()
                 .log().uri()
                 .when()
@@ -66,7 +66,7 @@ public class ReqresTest {
     }
 
     @Test
-    void CreateUserTest() {
+    void createUserTest() {
         String requestBody = "{\"name\":\"morpheus\",\"job\":\"leader\"}";
         given()
                 .contentType("application/json")
