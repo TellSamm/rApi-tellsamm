@@ -42,6 +42,7 @@ public class ReqresTest {
 
     }
 
+
     @Test
     void UsersSchemeTest() {
         Response response = RestAssured.get(BASE_URL + "/api/users?page=2");
