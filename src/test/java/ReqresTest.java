@@ -1,3 +1,5 @@
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -15,7 +17,6 @@ public class ReqresTest {
                 .log().uri()
                 .when() // действие
                 .get(BASE_URL + "/api/users/2")
-
                 .then()
                 .log().status()
                 .log().body()
@@ -41,22 +42,12 @@ public class ReqresTest {
 
     }
 
-
     @Test
-    void holl() {
-//        String expectedResponse =
-
-        given()
-                .log().uri()
-                .when()
-                .get("https://reqres.in/api/users?page=2")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .assertThat()
-                .body("support.url", equalTo("https://reqres.in/#support-heading"));
-
-
+    void GetUsersSchemeTest() {
+        Response response = RestAssured.get(BASE_URL + "/api/users?page=2");
+        response.then().assertThat().statusCode(200);
+        response.then().assertThat().body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
     }
+
+
 }
