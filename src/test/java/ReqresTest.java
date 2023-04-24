@@ -82,7 +82,7 @@ public class ReqresTest {
     }
 
     @Test
-    void DeleteUserTest(){
+    void deleteUserTest(){
         given()
                 .when()
                 .delete(BASE_URL + "/api/users/2")
