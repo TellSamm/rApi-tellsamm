@@ -15,7 +15,7 @@ public class ReqresTest {
     void CheckSupportLinkTest() {
         given()
                 .log().uri()
-                .when() // действие
+                .when()
                 .get(BASE_URL + "/api/users/2")
                 .then()
                 .log().status()
@@ -54,7 +54,7 @@ public class ReqresTest {
     void CheckUserNotFound() {
         given()
                 .log().uri()
-                .when() // действие
+                .when()
                 .get(BASE_URL + "/api/users/23")
                 .then()
                 .log().status()
@@ -83,7 +83,7 @@ public class ReqresTest {
     @Test
     void DeleteUserTest(){
         given()
-                .when() // действие
+                .when()
                 .delete(BASE_URL + "/api/users/2")
                 .then()
                 .statusCode(204)
