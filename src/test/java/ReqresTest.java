@@ -1,10 +1,10 @@
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
-
 
 
 public class ReqresTest {
@@ -43,11 +43,55 @@ public class ReqresTest {
     }
 
     @Test
-    void GetUsersSchemeTest() {
+    void UsersSchemeTest() {
         Response response = RestAssured.get(BASE_URL + "/api/users?page=2");
         response.then().assertThat().statusCode(200);
         response.then().assertThat().body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
     }
 
 
+    @Test
+    void CheckUserNotFound() {
+        given()
+                .log().uri()
+                .when() // действие
+                .get(BASE_URL + "/api/users/23")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(404)
+                .assertThat()
+                .body(equalTo("{}"));
+    }
+
+    @Test
+    void CreateUserTest() {
+        String requestBody = "{\"name\":\"morpheus\",\"job\":\"leader\"}";
+        given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(BASE_URL + "/api/users")
+                .then()
+                .statusCode(201)
+                .body("name", equalTo("morpheus"))
+                .body("job", equalTo("leader"))
+                .body("id", not(empty()))
+                .body("createdAt", not(empty()));
+    }
+
+    @Test
+    void DeleteUserTest(){
+        given()
+                .when() // действие
+                .delete(BASE_URL + "/api/users/2")
+                .then()
+                .statusCode(204)
+                .assertThat()
+                .body(is(emptyString()));
+
+
+    }
+
 }
+
