@@ -19,6 +19,7 @@ public class ReqresTest {
 
     }
 
+
     @Test
     void singleUserCheckScheme2Test() {
         given() // предусловия configuration
