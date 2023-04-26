@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import models.CreateUserDataModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -10,6 +11,27 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 public class ReqresTest {
 
     public static final String BASE_URL = "https://reqres.in";
+
+
+    @Test
+    void createUserTest() {
+        CreateUserDataModel userData = new CreateUserDataModel();
+        userData.setName("morpheus");
+        userData.setJob("leader");
+
+        given()
+                .contentType("application/json")
+                .body(userData)
+                .when()
+                .post(BASE_URL + "/api/users")
+                .then()
+                .statusCode(201)
+                .body("name", equalTo("morpheus"))
+                .body("job", equalTo("leader"))
+                .body("id", not(empty()))
+                .body("createdAt", not(empty()));
+    }
+
 
     @Test
     void checkSupportLinkTest() {
@@ -65,24 +87,9 @@ public class ReqresTest {
                 .body(equalTo("{}"));
     }
 
-    @Test
-    void createUserTest() {
-        String requestBody = "{\"name\":\"morpheus\",\"job\":\"leader\"}";
-        given()
-                .contentType("application/json")
-                .body(requestBody)
-                .when()
-                .post(BASE_URL + "/api/users")
-                .then()
-                .statusCode(201)
-                .body("name", equalTo("morpheus"))
-                .body("job", equalTo("leader"))
-                .body("id", not(empty()))
-                .body("createdAt", not(empty()));
-    }
 
     @Test
-    void deleteUserTest(){
+    void deleteUserTest() {
         given()
                 .when()
                 .delete(BASE_URL + "/api/users/2")
