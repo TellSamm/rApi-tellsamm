@@ -94,18 +94,6 @@ public class ReqresTest {
 
     }
 
-    @Test
-    void deleteUserTest2(){
-        given()
-                .when()
-                .delete(BASE_URL + "/api/users/2")
-                .then()
-                .statusCode(204)
-                .assertThat()
-                .body(is(emptyString()));
-
-
-    }
 
 }
 
