@@ -20,10 +20,12 @@ public class ReqresTest extends DataBase {
                 .then()
                 .log().status()
                 .log().body()
+                .body("data.email",equalTo("janet.weaver@reqres.in"))
+                .body("data.first_name", equalTo("Janet"))
+                .body("data.last_name",equalTo("Weaver"))
                 .statusCode(200)
                 .assertThat()
                 .body("support.url", equalTo("https://reqres.in/#support-heading"));
-
     }
 
 
@@ -77,6 +79,7 @@ public class ReqresTest extends DataBase {
                 .post(BASE_URL + "/api/users")
                 .then()
                 .statusCode(201)
+                .log().body()
                 .body("name", equalTo("morpheus"))
                 .body("job", equalTo("leader"))
                 .body("id", not(empty()))
