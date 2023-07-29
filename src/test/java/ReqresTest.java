@@ -13,7 +13,7 @@ public class ReqresTest extends DataBase {
 
 
     @Test
-    void checkSupportLinkTest() {
+    void checkSupportLinkTestAndUserInformation() {
         given()
                 .log().uri()
                 .when()
@@ -25,7 +25,6 @@ public class ReqresTest extends DataBase {
                 .body("data.first_name", equalTo("Janet"))
                 .body("data.last_name",equalTo("Weaver"))
                 .statusCode(200)
-                .assertThat()
                 .body("support.url", equalTo("https://reqres.in/#support-heading"));
     }
 
