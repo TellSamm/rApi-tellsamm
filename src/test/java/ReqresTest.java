@@ -1,33 +1,34 @@
 import data.DataBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import static specs.LoginSpecs.loginRequestSpec;
+import static specs.LoginSpecs.loginResponseSpec;
 
 
 public class ReqresTest extends DataBase {
 
 
-
     @Test
     void checkSupportLinkTestAndUserInformation() {
         given()
-                .log().uri()
-                .when()
+                .spec(loginRequestSpec);
+        when()
                 .get(BASE_URL + "/api/users/2")
                 .then()
-                .log().status()
-                .log().body()
-                .body("data.email",equalTo("janet.weaver@reqres.in"))
+                .spec(loginResponseSpec)
+                .body("data.email", equalTo("janet.weaver@reqres.in"))
                 .body("data.first_name", equalTo("Janet"))
-                .body("data.last_name",equalTo("Weaver"))
+                .body("data.last_name", equalTo("Weaver"))
                 .statusCode(200)
+                .assertThat()
                 .body("support.url", equalTo("https://reqres.in/#support-heading"));
     }
-
 
 
     @Test
@@ -52,7 +53,6 @@ public class ReqresTest extends DataBase {
         response.then().assertThat().statusCode(200);
         response.then().assertThat().body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
     }
-
 
 
     @Test
@@ -87,7 +87,7 @@ public class ReqresTest extends DataBase {
     }
 
     @Test
-    void deleteUserTest(){
+    void deleteUserTest() {
         given()
                 .when()
                 .delete(BASE_URL + "/api/users/2")
