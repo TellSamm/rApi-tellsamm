@@ -17,16 +17,14 @@ public class ReqresTest extends DataBase {
     @Test
     void checkSupportLinkTestAndUserInformation() {
         given()
-                .spec(loginRequestSpec);
-        when()
+                .spec(loginRequestSpec)
+                .when()
                 .get(BASE_URL + "/api/users/2")
                 .then()
                 .spec(loginResponseSpec)
                 .body("data.email", equalTo("janet.weaver@reqres.in"))
                 .body("data.first_name", equalTo("Janet"))
                 .body("data.last_name", equalTo("Weaver"))
-                .statusCode(200)
-                .assertThat()
                 .body("support.url", equalTo("https://reqres.in/#support-heading"));
     }
 
