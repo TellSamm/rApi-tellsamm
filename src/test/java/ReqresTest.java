@@ -27,6 +27,7 @@ public class ReqresTest extends DataBase {
     }
 
 
+
     @Test
     void checkListUsersTest() {
         given()
@@ -49,6 +50,7 @@ public class ReqresTest extends DataBase {
         response.then().assertThat().statusCode(200);
         response.then().assertThat().body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
     }
+
 
 
     @Test
