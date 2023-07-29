@@ -7,9 +7,9 @@ import static org.hamcrest.Matchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 
-public class ReqresTest {
+public class ReqresTest extends DataBase {
 
-    public static final String BASE_URL = "https://reqres.in";
+
 
     @Test
     void checkSupportLinkTest() {
