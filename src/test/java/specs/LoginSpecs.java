@@ -14,6 +14,7 @@ public class LoginSpecs extends DataBase {
     public static RequestSpecification loginRequestSpec = with()
             .log().uri();
 
+    //новый коммент
     public static ResponseSpecification loginResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
