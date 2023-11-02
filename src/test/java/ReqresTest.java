@@ -1,7 +1,6 @@
 import data.DataBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -16,16 +15,18 @@ public class ReqresTest extends DataBase {
 
     @Test
     void checkSupportLinkTestAndUserInformation() {
-        given()
+        given() // Подготовка!
                 .spec(loginRequestSpec)
-                .when()
+                .when() //Действие!
                 .get(BASE_URL + "/api/users/2")
-                .then()
+                .then() //Проверка!
+                // Здесь вы проверяете, соответствует ли фактический результат ожиданиям. Это включает в себя использование матчеров или проверок, чтобы убедиться, что тест прошел успешно.
                 .spec(loginResponseSpec)
                 .body("data.email", equalTo("janet.weaver@reqres.in"))
                 .body("data.first_name", equalTo("Janet"))
                 .body("data.last_name", equalTo("Weaver"))
-                .body("support.url", equalTo("https://reqres.in/#support-heading"));
+                .body("support.url", equalTo("https://reqres.in/#support-heading"))
+                .body("data.avatar", containsString("2-image"));
     }
 
 
