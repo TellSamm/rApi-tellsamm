@@ -15,11 +15,11 @@ public class ReqresTest extends DataBase {
 
     @Test
     void checkSupportLinkTestAndUserInformation() {
-        given() // Подготовка!
+        given() // Подготовка!______________________________________1
                 .spec(loginRequestSpec)
-                .when() //Действие!
+                .when() //Действие!_________________________________2
                 .get(BASE_URL + "/api/users/2")
-                .then() //Проверка!
+                .then() //Проверка!_________________________________3
                 // Здесь вы проверяете, соответствует ли фактический результат ожиданиям. Это включает в себя использование матчеров или проверок, чтобы убедиться, что тест прошел успешно.
                 .spec(loginResponseSpec)
                 .body("data.email", equalTo("janet.weaver@reqres.in"))
