@@ -29,6 +29,24 @@ public class ReqresTest extends DataBase {
                 .body("data.avatar", containsString("2-image"));
     }
 
+    @Test
+    void checkSupportLinkTestAndUserInformation2() { // проблема со спецификацией - тут показано все что нужно
+        given() // Подготовка!______________________________________1
+                .spec(loginRequestSpec)
+                .when() //Действие!_________________________________2
+                .get(BASE_URL + "/api/users/2")
+                .then() //Проверка!_________________________________3
+                .log().status()
+                .log().body()
+                // Здесь вы проверяете, соответствует ли фактический результат ожиданиям. Это включает в себя использование матчеров или проверок, чтобы убедиться, что тест прошел успешно.
+                //.spec(loginResponseSpec)
+                .body("data.email", equalTo("janet.weaver@reqres.in"))
+                .body("data.first_name", equalTo("Janet"))
+                .body("data.last_name", equalTo("Weaver"))
+                .body("support.url", equalTo("https://reqres.in/#support-heading"))
+                .body("data.avatar", containsString("2-image"));
+    }
+
 
     @Test
     void checkListUsersTest() {
