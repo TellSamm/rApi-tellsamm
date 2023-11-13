@@ -18,6 +18,7 @@ public class LoginSpecs extends DataBase {
             .log(STATUS)
             .log(BODY)
             .log(COOKIES)
-            .expectStatusCode(200)
+            .log(STATUS)
+             .expectStatusCode(200)
             .build();
 }

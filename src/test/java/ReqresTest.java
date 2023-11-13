@@ -51,18 +51,16 @@ public class ReqresTest extends DataBase {
     @Test
     void checkListUsersTest() {
         given()
-                .log().uri()
+                .spec(loginRequestSpec)
                 .when()
                 .get(BASE_URL + "/api/users?page=2")
                 .then()
-                .log().status()
-                .log().body()
+                .spec(loginResponseSpec)
                 .statusCode(200)
                 .body("total", is(12))
                 .body(matchesJsonSchemaInClasspath("shemes/status-scheme-response-list-users.json"));
 
     }
-
 
     @Test
     void usersSchemeTest() {
