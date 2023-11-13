@@ -8,7 +8,7 @@ public class ExampleGenerics<T> {
         return string;
     }
 
-    public void addToString(T t) {
+    public void addToString (T t) {
 
 
         if (this.string.equals("")) {
