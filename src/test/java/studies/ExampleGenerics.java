@@ -1,6 +1,6 @@
 package studies;
 
-public class ExampleGenerics<T> {
+public class ExampleGenerics<T, V> {
 
     private String string = "";
 
@@ -8,13 +8,13 @@ public class ExampleGenerics<T> {
         return string;
     }
 
-    public void addToString (T t) {
+    public void addToString (T t, V v) {
 
 
         if (this.string.equals("")) {
-            this.string = this.string + t.toString();
+            this.string = this.string + t.toString() + v.toString();
         } else {
-            this.string = this.string + " - " + t.toString();
+            this.string = this.string + " - " + t.toString() + v.toString();
         }
     }
 }
