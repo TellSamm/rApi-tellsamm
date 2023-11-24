@@ -13,7 +13,7 @@ public class ExampleGenerics<T, V> {
 
         if (this.string.equals("")) {
             this.string = this.string + t.toString() + v.toString();
-        } else {
+        } else { //test
             this.string = this.string + " - " + t.toString() + v.toString(); //test = 42
         }
     }
