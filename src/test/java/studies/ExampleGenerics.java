@@ -8,7 +8,7 @@ public class ExampleGenerics<T, V> {
         return string;
     }
 
-    public void addToString (T t, V v) {
+    public void addToString(T t, V v) {
 
 
         if (this.string.equals("")) {
@@ -17,4 +17,16 @@ public class ExampleGenerics<T, V> {
             this.string = this.string + " - " + t.toString() + v.toString();
         }
     }
+
+    public void addToStringTest(T tellSamm, V meTest) {
+        String testSamm = this.string = this.string + " - " + tellSamm.toString() + meTest.toString();
+        System.out.println(testSamm);
+    }
+
+
+    public <J, P> void addToStringTest2(J tellSamm2, P meTest2) {
+        String testSamm = this.string + " - " + tellSamm2.toString() + meTest2.toString();
+        System.out.println(testSamm);
+    }
+
 }
