@@ -26,7 +26,7 @@ public class ExampleGenerics<T, V> {
 
     public <J, P> void addToStringTest2(J tellSamm2, P meTest2) {
         String testSamm = this.string + " - " + tellSamm2.toString() + meTest2.toString();
-        System.out.println(testSamm);// test = false
+        System.out.println(testSamm);// test = false = true
     }
 
 }
