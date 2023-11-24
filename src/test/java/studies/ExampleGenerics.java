@@ -14,13 +14,13 @@ public class ExampleGenerics<T, V> {
         if (this.string.equals("")) {
             this.string = this.string + t.toString() + v.toString();
         } else {
-            this.string = this.string + " - " + t.toString() + v.toString(); //test
+            this.string = this.string + " - " + t.toString() + v.toString(); //test = 4
         }
     }
 
     public void addToStringTest(T tellSamm, V meTest) {
         String testSamm = this.string = this.string + " - " + tellSamm.toString() + meTest.toString();
-        System.out.println(testSamm); // test
+        System.out.println(testSamm); // test = 2
     }
 
 
