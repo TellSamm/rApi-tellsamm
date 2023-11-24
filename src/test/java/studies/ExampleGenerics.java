@@ -14,19 +14,19 @@ public class ExampleGenerics<T, V> {
         if (this.string.equals("")) {
             this.string = this.string + t.toString() + v.toString();
         } else {
-            this.string = this.string + " - " + t.toString() + v.toString();
+            this.string = this.string + " - " + t.toString() + v.toString(); //test
         }
     }
 
     public void addToStringTest(T tellSamm, V meTest) {
         String testSamm = this.string = this.string + " - " + tellSamm.toString() + meTest.toString();
-        System.out.println(testSamm);
+        System.out.println(testSamm); // test
     }
 
 
     public <J, P> void addToStringTest2(J tellSamm2, P meTest2) {
         String testSamm = this.string + " - " + tellSamm2.toString() + meTest2.toString();
-        System.out.println(testSamm);
+        System.out.println(testSamm);// test
     }
 
 }
