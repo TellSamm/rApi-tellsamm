@@ -3,13 +3,21 @@ package studies;
 import java.util.*;
 
 public class CollectionsSai {
-
+    public String getMessage() {
+        return "Hello, Spring!";
+    }
 
     public static void main(String[] args) {
 
-        Collection<Integer> call = new ArrayList<>();
 
+        CollectionsSai collectionsSai = new CollectionsSai();
+        System.out.println(collectionsSai.getMessage());
+
+        Collection<Integer> call = new ArrayList<>();
+        Collection<Integer> call1 = new LinkedList<>();
         Collection<String> str = new LinkedList<>();
+
+        List<Integer> myTest = new ArrayList<>();
 
 
         call.add(1);
