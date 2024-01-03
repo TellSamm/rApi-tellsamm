@@ -16,7 +16,7 @@ public class MyTest {
     @Test
     @Order(1)
     void myTestMethodCars (){
-
+        Assumptions.abort("А давайте просто отменим этот тестовый метод =)");
         String bmw = "BMW";
         System.out.println("результат теста: " + bmw );
     }
