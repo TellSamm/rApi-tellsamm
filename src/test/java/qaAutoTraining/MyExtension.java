@@ -1,5 +1,6 @@
 package qaAutoTraining;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 

@@ -36,7 +36,9 @@ dependencies {
             "io.qameta.allure:allure-selenide:2.13.6",
             "io.rest-assured:rest-assured:5.3.0",
             "org.aspectj:aspectjweaver:1.9.19",
-            "io.rest-assured:json-schema-validator:5.3.0"
+            "io.rest-assured:json-schema-validator:5.3.0",
+            "com.squareup.retrofit2:retrofit:2.9.0",
+            "com.squareup.retrofit2:converter-gson:2.9.0"
 
     )
 }
