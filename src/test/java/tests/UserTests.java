@@ -1,13 +1,14 @@
 package tests;
 
 import endpoints.UserService;
-import models.SingleUserResponse;
-import models.UserListRootResponse;
-import models.UserResponse;
+import models.*;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 import retrofit2.Retrofit;
@@ -31,9 +32,6 @@ public class UserTests {
     public void testUserListPage() throws IOException {
         int page = 1;
 
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         Response<UserListRootResponse> response = userService.getUserList(page).execute();
 
         Assertions.assertTrue(response.isSuccessful());
@@ -47,7 +45,7 @@ public class UserTests {
     }
 
     @Test
-    public void testSingleUser() throws IOException{
+    public void testSingleUser() throws IOException {
         int id = 2;
         Response<SingleUserResponse> response = userService.getUserById(id).execute();
 
@@ -57,5 +55,55 @@ public class UserTests {
 
 
     }
+
+    @Test
+    public void testCreateUser() throws IOException {
+
+        String correctTimepattern = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z";
+        String name = "TellSamm";
+        String job = "QATestingForever";
+
+        UserRequest userRequest = new UserRequest(name, job);
+        Response<CreateUserResponse> response = userService.createUser(userRequest)
+                .execute();
+
+        Assertions.assertTrue(response.isSuccessful());
+        CreateUserResponse userResponse = response.body();
+        Assertions.assertEquals(name, userResponse.getName());
+        Assertions.assertEquals(job, userResponse.getJob());
+        Assertions.assertTrue(userResponse.getCreatedAt().matches(correctTimepattern));
+
+
+    }
+
+
+    @Test
+    public void testUpdateUser() throws IOException {
+
+        String name = "TellSamm2";
+        String job = "QATestingForever2";
+
+        UserRequest userRequest = new UserRequest(name, job);
+        Response<UserUpdateResponse> response = userService.updateUserById(4, userRequest).execute();
+
+        assertTrue(response.isSuccessful());
+        assertTrue(isTimePatternCorrect(response.body().getUpdatedAt()));
+
+
+    }
+
+
+    @Test
+    public void testDeleteUser() throws IOException {
+        Response<Void> response = userService.deleteUserById(4).execute();
+        assertTrue(response.isSuccessful());
+        assertEquals(204,response.code());
+    }
+
+
+    private boolean isTimePatternCorrect(String time){
+        return time.matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z");
+    }
+
 
 }

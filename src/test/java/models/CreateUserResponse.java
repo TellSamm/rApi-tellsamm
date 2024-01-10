@@ -1,17 +1,19 @@
 package models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CreateUserResponse {
 
     private String name;
     private String job;
     private String id;
-    private String createAt;
+    private String createdAt;
 
-    public CreateUserResponse(String name, String job, String id, String createAt) {
+    public CreateUserResponse(String name, String job, String id, String createdAt) {
         this.name = name;
         this.job = job;
         this.id = id;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
     }
 
     public String getName() {
@@ -38,11 +40,11 @@ public class CreateUserResponse {
         this.id = id;
     }
 
-    public String getCreateAt() {
-        return createAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(String createAt) {
-        this.createAt = createAt;
+    public void setCreateAt(String createdsAtSuper) {
+        this.createdAt = createdsAtSuper;
     }
 }

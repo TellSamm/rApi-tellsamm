@@ -25,6 +25,6 @@ public interface UserService {
 
     // Удаление пользователя
     @DELETE("api/users/{id}")
-    Call<Void> deleteUseerById (@Path("id") int id);
+    Call<Void> deleteUserById (@Path("id") int id);
 
 }
