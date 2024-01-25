@@ -14,7 +14,6 @@ public interface UserService {
     @GET("api/users/{id}")
     Call<SingleUserResponse> getUserById(@Path("id") int id);
 
-
     // Создание пользователя
     @POST("api/users")
     Call<CreateUserResponse> createUser(@Body UserRequest userRequest);
