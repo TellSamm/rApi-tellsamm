@@ -1,5 +1,6 @@
 package tests;
 
+import data.DataBase;
 import endpoints.RegistrationService;
 import endpoints.UserService;
 import models.*;
@@ -16,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class UserTests {
+public class UserTests extends DataBase {
 
     private final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://reqres.in/")
@@ -107,11 +108,6 @@ public class UserTests {
 
     @Test
     public void registrationUserSuccessfull() throws IOException {
-        String email = "eve.holt@reqres.in";
-        String password = "pistol";
-
-        Integer id = 4;
-        String token = "QpwL5tke4Pnpja7X4";
 
         DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(email,password);
         Response<DataRegisterUserResponse> response = registrationService.registrationUserSuccessful(dataRegisterUserRequest).execute();
