@@ -1,10 +1,6 @@
 package models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-
 public class UserUpdateResponse {
 
     private String name;

@@ -3,11 +3,9 @@ package tests;
 import endpoints.RegistrationService;
 import endpoints.UserService;
 import models.*;
-import okhttp3.logging.HttpLoggingInterceptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

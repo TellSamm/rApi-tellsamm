@@ -1,8 +1,5 @@
 package models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 
 public class SingleUserResponse {
 
