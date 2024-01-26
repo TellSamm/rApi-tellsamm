@@ -1,5 +1,6 @@
 package tests;
 
+import endpoints.RegistrationService;
 import endpoints.UserService;
 import models.*;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -27,6 +28,7 @@ public class UserTests {
 
     private final UserService userService = retrofit.create(UserService.class);
 
+    private final RegistrationService registrationService = retrofit.create(RegistrationService.class);
 
     @Test
     public void testUserListPage() throws IOException {
@@ -105,5 +107,22 @@ public class UserTests {
         return time.matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z");
     }
 
+    @Test
+    public void registrationUserSuccessfull() throws IOException {
+        String email = "eve.holt@reqres.in";
+        String password = "pistol";
+
+        Integer id = 4;
+        String token = "QpwL5tke4Pnpja7X4";
+
+        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(email,password);
+        Response<DataRegisterUserResponse> response = registrationService.registrationUserSuccessful(dataRegisterUserRequest).execute();
+
+        Assertions.assertTrue(response.isSuccessful());
+        DataRegisterUserResponse dataRegisterUserResponse = response.body();
+        Assertions.assertEquals(id, dataRegisterUserResponse.getId());
+        Assertions.assertEquals(token, dataRegisterUserResponse.getToken());
+
+    }
 
 }
