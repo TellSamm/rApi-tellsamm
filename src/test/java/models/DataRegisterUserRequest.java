@@ -10,6 +10,10 @@ public class DataRegisterUserRequest {
         this.password = password;
     }
 
+    public DataRegisterUserRequest(String email) {
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }

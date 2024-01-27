@@ -1,5 +1,6 @@
 package tests;
 
+import com.google.gson.Gson;
 import data.DataBase;
 import endpoints.RegistrationService;
 import endpoints.UserService;
@@ -7,6 +8,9 @@ import models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
+
+import static java.lang.System.err;
+import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,6 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class UserTests extends DataBase {
@@ -23,7 +28,7 @@ public class UserTests extends DataBase {
             .baseUrl("https://reqres.in/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
+    Gson gson = new Gson();
 
     private final UserService userService = retrofit.create(UserService.class);
 
@@ -116,6 +121,19 @@ public class UserTests extends DataBase {
         DataRegisterUserResponse dataRegisterUserResponse = response.body();
         Assertions.assertEquals(id, dataRegisterUserResponse.getId());
         Assertions.assertEquals(token, dataRegisterUserResponse.getToken());
+
+    }
+
+
+    @Test
+    public void registrationUserUnsuccessfull() throws IOException {
+
+        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest("sydney@fife");
+        Response<UnsuccessRegistrationResponse> response = registrationService.registrationUserUnsuccessful(dataRegisterUserRequest).execute();
+        Assertions.assertEquals(400, response.code());
+        UnsuccessRegistrationResponse unsuccessRegistrationResponse = gson.fromJson(response.errorBody().string(), UnsuccessRegistrationResponse.class);        Assertions.assertNotNull(unsuccessRegistrationResponse);
+        Assertions.assertEquals(error, unsuccessRegistrationResponse.getError());
+        System.out.println(unsuccessRegistrationResponse.getError().toString());
 
     }
 
