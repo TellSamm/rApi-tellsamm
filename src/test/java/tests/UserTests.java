@@ -1,5 +1,4 @@
 package tests;
-
 import com.google.gson.Gson;
 import data.DataBase;
 import endpoints.RegistrationService;
@@ -7,21 +6,19 @@ import endpoints.UserService;
 import models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import qaAutoTraining.AfterTestExtension;
+import qaAutoTraining.MyExtension;
 import retrofit2.Response;
-
-import static java.lang.System.err;
-import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.List;
 
+
+@ExtendWith({MyExtension.class, AfterTestExtension.class})
 public class UserTests extends DataBase {
 
     private final Retrofit retrofit = new Retrofit.Builder()
