@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UnsuccessRegistrationResponse {
 
-    //@SerializedName("error")
+    @SerializedName("error")
     private String error;
 
     public UnsuccessRegistrationResponse(String error) {

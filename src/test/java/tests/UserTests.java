@@ -135,8 +135,10 @@ public class UserTests extends DataBase {
     public void registrationUserUnsuccessfull() throws IOException {
 
         DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(emailError);
+        //тут метод .body мы не можем использовать так как он работает только при успешности ответа от сервера 200 - 299
         Response<UnsuccessRegistrationResponse> response = registrationService.registrationUserUnsuccessful(dataRegisterUserRequest).execute();
         Assertions.assertEquals(400, response.code());
+        //преобразуем эту JSON-строку в объект типа UnsuccessRegistrationResponse.class
         UnsuccessRegistrationResponse unsuccessRegistrationResponse = gson.fromJson(response.errorBody().string(), UnsuccessRegistrationResponse.class);
         Assertions.assertEquals(error, unsuccessRegistrationResponse.getError());
 
