@@ -15,21 +15,28 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @ExtendWith({MyExtension.class, AfterTestExtension.class})
 public class UserTests extends DataBase {
 
+
+
+
     private final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://reqres.in/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    Gson gson = new Gson();
 
-    private final UserService userService = retrofit.create(UserService.class);
 
-    private final RegistrationService registrationService = retrofit.create(RegistrationService.class);
+    //реалуем интерфейс через метод ретрофита .create
+    private final UserService userService = retrofit.create(UserService.class); //тут по сути происходит чтение аннотаций внутри интерфейса UserService
+
+    //реалуем интерфейс через метод ретрофита .create
+    private final RegistrationService registrationService = retrofit.create(RegistrationService.class); // тоже самое что и сверху
+
 
     @Test
     public void testUserListPage() throws IOException {
@@ -118,6 +125,8 @@ public class UserTests extends DataBase {
         DataRegisterUserResponse dataRegisterUserResponse = response.body();
         Assertions.assertEquals(id, dataRegisterUserResponse.getId());
         Assertions.assertEquals(token, dataRegisterUserResponse.getToken());
+        System.out.println(dataRegisterUserResponse.getToken().toString());
+
 
     }
 
@@ -125,12 +134,12 @@ public class UserTests extends DataBase {
     @Test
     public void registrationUserUnsuccessfull() throws IOException {
 
-        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest("sydney@fife");
+        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(emailError);
         Response<UnsuccessRegistrationResponse> response = registrationService.registrationUserUnsuccessful(dataRegisterUserRequest).execute();
         Assertions.assertEquals(400, response.code());
-        UnsuccessRegistrationResponse unsuccessRegistrationResponse = gson.fromJson(response.errorBody().string(), UnsuccessRegistrationResponse.class);        Assertions.assertNotNull(unsuccessRegistrationResponse);
+        UnsuccessRegistrationResponse unsuccessRegistrationResponse = gson.fromJson(response.errorBody().string(), UnsuccessRegistrationResponse.class);
         Assertions.assertEquals(error, unsuccessRegistrationResponse.getError());
-        System.out.println(unsuccessRegistrationResponse.getError().toString());
+
 
     }
 

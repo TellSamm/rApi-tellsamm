@@ -18,7 +18,8 @@ public class AfterTestExtension implements AfterAllCallback {
         extentReports.attachReporter(sparkReporter);
 
         // Добавляем код для создания отчета после всех тестов
-        ExtentTest extentTest = extentReports.createTest("After All my Tests");
+        ExtentTest extentTest = extentReports.createTest("After All my Tests"); //  ----?
+
         extentTest.log(Status.INFO, "All tests have completed.");
 
         // save

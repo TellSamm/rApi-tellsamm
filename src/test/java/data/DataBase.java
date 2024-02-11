@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 public class DataBase {
 
-    Gson gson = new Gson();
+    protected static final Gson gson = new Gson();
     public static  String BASE_URL = "https://reqres.in";
 
     public static  String email = "eve.holt@reqres.in";
