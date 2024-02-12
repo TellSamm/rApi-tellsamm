@@ -9,22 +9,23 @@ public class MyTest {
 
     @Test
     @Order(2)
-    void myTestMethod (){
+    void myTestMethod() {
         System.out.println("результат теста: " + 1 + 1 * 3);
     }
 
     @Test
     @Order(1)
-    void myTestMethodCars (){
+    void myTestMethodCars() {
         Assumptions.abort("А давайте просто отменим этот тестовый метод =)");
         String bmw = "BMW";
-        System.out.println("результат теста: " + bmw );
+        System.out.println("результат теста: " + bmw);
     }
+
     @Test
     @Order(3)
-    void myTestMethodAnimal (){
+    void myTestMethodAnimal() {
 
         String dino = "Dino";
-        System.out.println("результат теста: " + dino );
+        System.out.println("результат теста: " + dino);
     }
 }

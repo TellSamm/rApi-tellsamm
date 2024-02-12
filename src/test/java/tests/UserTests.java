@@ -1,10 +1,9 @@
 package tests;
-import com.google.gson.Gson;
-import com.google.gson.internal.bind.util.ISO8601Utils;
+
 import data.DataBase;
 import endpoints.RegistrationService;
 import endpoints.UserService;
-import io.restassured.internal.http.ContentTypeSubTypeExtractor;
+import jupiter.PrintUnsuccessBody;
 import models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,19 +11,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import qaAutoTraining.AfterTestExtension;
 import qaAutoTraining.MyExtension;
 import retrofit2.Response;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @ExtendWith({MyExtension.class, AfterTestExtension.class})
 public class UserTests extends DataBase {
-
-
 
 
     private final Retrofit retrofit = new Retrofit.Builder()
@@ -109,18 +107,18 @@ public class UserTests extends DataBase {
     public void testDeleteUser() throws IOException {
         Response<Void> response = userService.deleteUserById(4).execute();
         assertTrue(response.isSuccessful());
-        assertEquals(204,response.code());
+        assertEquals(204, response.code());
     }
 
 
-    private boolean isTimePatternCorrect(String time){
+    private boolean isTimePatternCorrect(String time) {
         return time.matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z");
     }
 
     @Test
     public void registrationUserSuccessfull() throws IOException {
 
-        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(email,password);
+        DataRegisterUserRequest dataRegisterUserRequest = new DataRegisterUserRequest(email, password);
         Response<DataRegisterUserResponse> response = registrationService.registrationUserSuccessful(dataRegisterUserRequest).execute();
 
         Assertions.assertTrue(response.isSuccessful());
@@ -132,7 +130,7 @@ public class UserTests extends DataBase {
 
     }
 
-
+    @PrintUnsuccessBody
     @Test
     public void registrationUserUnsuccessfull() throws IOException {
 
