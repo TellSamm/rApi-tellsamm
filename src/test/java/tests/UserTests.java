@@ -1,8 +1,10 @@
 package tests;
 import com.google.gson.Gson;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import data.DataBase;
 import endpoints.RegistrationService;
 import endpoints.UserService;
+import io.restassured.internal.http.ContentTypeSubTypeExtractor;
 import models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -141,8 +143,6 @@ public class UserTests extends DataBase {
         //преобразуем эту JSON-строку в объект типа UnsuccessRegistrationResponse.class
         UnsuccessRegistrationResponse unsuccessRegistrationResponse = gson.fromJson(response.errorBody().string(), UnsuccessRegistrationResponse.class);
         Assertions.assertEquals(error, unsuccessRegistrationResponse.getError());
-
-
     }
 
 }
