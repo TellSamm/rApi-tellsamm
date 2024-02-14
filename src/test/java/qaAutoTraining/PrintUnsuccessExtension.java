@@ -38,7 +38,6 @@ public class PrintUnsuccessExtension implements AfterTestExecutionCallback, Befo
     public void afterTestExecution(ExtensionContext context) throws Exception {
 
         Response response = context.getStore(NAMESPACE).get("response", Response.class);
-
         if (response != null && response.code() >= 400 && response.code() <= 406) {
             System.out.println("Тело ответа теста: ");
             System.out.println(response.errorBody().string());

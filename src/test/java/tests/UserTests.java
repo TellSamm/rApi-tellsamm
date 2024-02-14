@@ -20,7 +20,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@PrintUnsuccessBody
 @ExtendWith({MyExtension.class, AfterTestExtension.class})
 public class UserTests extends DataBase {
 
@@ -130,7 +130,7 @@ public class UserTests extends DataBase {
 
     }
 
-    @PrintUnsuccessBody
+
     @Test
     public void registrationUserUnsuccessfull() throws IOException {
 
